@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 import '../Login_img_form.dart';
@@ -15,17 +14,16 @@ class Webloginui extends StatefulWidget {
 class _WebloginuiState extends State<Webloginui> {
   final formkey = GlobalKey<FormState>();
   bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Form(
-        key: formkey,
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-          child: Container(
+      body: Stack(
+        children: [
+          Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
                   "Assets/forest-and-mountains-illustration-calm-mountain-forest-bird-wild-nature-scene-landscape-view-of-blue-mountains-illustration-vector.jpg",
@@ -33,15 +31,26 @@ class _WebloginuiState extends State<Webloginui> {
                 fit: BoxFit.cover,
               ),
             ),
+          ),
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+            child: Container(
+              color: Colors.black.withOpacity(0),
+            ),
+          ),
+          Form(
+            key: formkey,
             child: Column(
               children: [
+
                 Padding(
-                  padding: const EdgeInsets.only(left: 50, top: 20),
+                  padding:EdgeInsets.only(left: 50, top: 20),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(width: 10),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text(
                           "Logo",
                           style: TextStyle(
@@ -51,9 +60,9 @@ class _WebloginuiState extends State<Webloginui> {
                           ),
                         ),
                       ),
-                      SizedBox(width: 400),
+                      Spacer(),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding:EdgeInsets.all(8.0),
                         child: InkWell(
                           onTap: () {},
                           child: Text(
@@ -68,7 +77,7 @@ class _WebloginuiState extends State<Webloginui> {
                       ),
                       SizedBox(width: 15),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: InkWell(
                           onTap: () {},
                           child: Text(
@@ -83,7 +92,7 @@ class _WebloginuiState extends State<Webloginui> {
                       ),
                       SizedBox(width: 15),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: InkWell(
                           onTap: () {},
                           child: Text(
@@ -113,7 +122,7 @@ class _WebloginuiState extends State<Webloginui> {
                       ),
                       SizedBox(width: 15),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Container(
                           height: 25,
                           width: 70,
@@ -121,9 +130,9 @@ class _WebloginuiState extends State<Webloginui> {
                             borderRadius: BorderRadius.circular(1),
                             border: Border.all(color: Colors.white),
                           ),
-                          child: Center(
+                          child:Center(
                             child: InkWell(
-                              onTap: () {},
+                              onTap: (){},
                               child: Text(
                                 "Login",
                                 style: TextStyle(
@@ -142,8 +151,8 @@ class _WebloginuiState extends State<Webloginui> {
                 SizedBox(height: 110),
                 Center(
                   child: Container(
-                    width: 390,
-                    height: 360,
+                    width: 400,
+                    height: 390,
                     decoration: BoxDecoration(
                       color: Colors.black26,
                       borderRadius: BorderRadius.circular(20),
@@ -156,14 +165,14 @@ class _WebloginuiState extends State<Webloginui> {
                             Container(
                               height: 35,
                               width: 35,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(15),
                                   bottomLeft: Radius.circular(15),
                                 ),
                                 color: Colors.white,
                               ),
-                              child: Icon(Icons.close, color: Colors.blueGrey),
+                              child: const Icon(Icons.close, color: Colors.blueGrey),
                             ),
                           ],
                         ),
@@ -172,44 +181,40 @@ class _WebloginuiState extends State<Webloginui> {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 28,
-                            color: Color(0xffD2EDFA),
+                            color: Color(0xffCFECFC),
                           ),
                         ),
                         SizedBox(height: 25),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: TextFormField(
                             validator: (value) {
-                              if (value!.isEmpty || value == null) {
+                              if (value == null || value.isEmpty) {
                                 return "Enter email";
                               }
+                              return null;
                             },
                             decoration: InputDecoration(
-                              suffixIcon: Icon(
-                                Icons.email,
-                                color: Colors.grey.shade50,
-                              ),
+                              suffixIcon: Icon(Icons.email, color: Colors.grey.shade50),
                               hintText: "Email",
-                              hintStyle: TextStyle(color: Colors.white),
+                              hintStyle: const TextStyle(color: Colors.white),
                             ),
                           ),
                         ),
                         SizedBox(height: 10),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: TextFormField(
                             validator: (value) {
-                              if (value!.isEmpty || value == null) {
+                              if (value == null || value.isEmpty) {
                                 return "Enter password";
                               }
+                              return null;
                             },
                             decoration: InputDecoration(
-                              suffixIcon: Icon(
-                                Icons.lock,
-                                color: Colors.grey.shade50,
-                              ),
+                              suffixIcon: Icon(Icons.lock, color: Colors.grey.shade50),
                               hintText: "Password",
-                              hintStyle: TextStyle(color: Colors.white),
+                              hintStyle: const TextStyle(color: Colors.white),
                             ),
                           ),
                         ),
@@ -218,12 +223,8 @@ class _WebloginuiState extends State<Webloginui> {
                           children: [
                             Expanded(
                               child: CheckboxListTile(
-                                controlAffinity:
-                                    ListTileControlAffinity.leading,
-                                title: Text(
-                                  "Remember me",
-                                  style: TextStyle(color: Colors.grey.shade50),
-                                ),
+                                controlAffinity: ListTileControlAffinity.leading,
+                                title: Text("Remember me", style: TextStyle(color: Colors.grey.shade50)),
                                 value: isChecked,
                                 onChanged: (bool? value) {
                                   setState(() {
@@ -233,12 +234,12 @@ class _WebloginuiState extends State<Webloginui> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 19),
+                              padding: EdgeInsets.only(right: 19),
                               child: Text(
                                 "Forgot password?",
                                 style: TextStyle(
                                   color: Colors.grey.shade50,
-                                  fontSize: 12,
+                                  fontSize: 15.5,
                                 ),
                               ),
                             ),
@@ -249,7 +250,7 @@ class _WebloginuiState extends State<Webloginui> {
                           height: 35,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
-                            color: Color(0xff66BAF2),
+                            color: const Color(0xff66BAF2),
                           ),
                           child: Center(
                             child: InkWell(
@@ -277,12 +278,12 @@ class _WebloginuiState extends State<Webloginui> {
                               "Don't have an account?",
                               style: TextStyle(color: Colors.white),
                             ),
-                            SizedBox(width: 10),
-                            InkWell(
-                              onTap: () {},
-                              child: Text(
-                                "Register",
-                                style: TextStyle(color: Color(0xffD2EDFA)),
+                            SizedBox(width: 5),
+                            Text(
+                              "Register",
+                              style: TextStyle(
+                                color: Color(0xffCFECFC),
+                                fontWeight: FontWeight.bold,fontSize: 14
                               ),
                             ),
                           ],
@@ -294,7 +295,7 @@ class _WebloginuiState extends State<Webloginui> {
               ],
             ),
           ),
-        ),
+        ],
       ),
     );
   }
