@@ -34,7 +34,6 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-
             backgroundColor: Color.fromARGB(255, 76, 153, 175),
           ),
           BottomNavigationBarItem(
