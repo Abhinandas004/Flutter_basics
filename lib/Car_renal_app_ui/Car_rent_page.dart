@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Car_Rental_App_Ui.dart';
 import 'Car_date_time_picker.dart';
+import 'Navigation_Car_Rental_app.dart';
 
 class CarRentPage extends StatefulWidget {
   const CarRentPage({super.key});
@@ -15,34 +17,39 @@ class _CarRentPageState extends State<CarRentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffFAFAFA),
-      body: ListView(
+      body: Column(
         children: [
-          InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
+          SafeArea(
             child: Padding(
-              padding: const EdgeInsets.only(left: 25, top: 25),
+              padding: const EdgeInsets.only(left: 25,),
               child: Row(
                 children: [
-                  Container(
-                    height: 25,
-                    width: 25,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Center(
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            size: 18,
-                            color: Color(0xff162542),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MyNavigationcar()),
+                      );
+                    },
+                    child: Container(
+                      height: 25,
+                      width: 25,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.white,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Center(
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              size: 18,
+                              color: Color(0xff162542),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   Spacer(),
@@ -54,12 +61,12 @@ class _CarRentPageState extends State<CarRentPage> {
               ),
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 0),
           Column(
             children: [
               Container(
-                width: 365,
-                height: 180,
+                width: 395,
+                height: 210,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
@@ -85,8 +92,8 @@ class _CarRentPageState extends State<CarRentPage> {
             ],
           ),
           Container(
-            width: 355,
-            height: 90,
+            width: 385,
+            height: 100,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: Colors.white,
@@ -96,25 +103,25 @@ class _CarRentPageState extends State<CarRentPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
                             "Mercedes S-class",
                             style: TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     Spacer(),
                     Icon(Icons.star_outlined, color: Colors.yellow),
                     Padding(
-                      padding: const EdgeInsets.only(right: 15),
+                      padding: const EdgeInsets.only(right: 10),
                       child: Text(
                         "4.8",
                         style: TextStyle(
@@ -132,7 +139,7 @@ class _CarRentPageState extends State<CarRentPage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
-                        "The price of Mercedes S-class, a 5 seater Sedan",
+                        "The price of Mercedes S-class , a 5 seater Sedan with a",
                         style: TextStyle(color: Colors.black),
                       ),
                     ),
@@ -144,7 +151,7 @@ class _CarRentPageState extends State<CarRentPage> {
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
-                        "with premium features and luxury design.It is available...",
+                        "premium features and luxury design.It is available in t...",
                       ),
                     ),
                   ],
@@ -154,8 +161,8 @@ class _CarRentPageState extends State<CarRentPage> {
           ),
           SizedBox(height: 10),
           Container(
-            height: 110,
-            width: 355,
+            height: 120,
+            width: 385,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: Colors.white,
@@ -309,8 +316,8 @@ class _CarRentPageState extends State<CarRentPage> {
           ),
           SizedBox(height: 10),
           Container(
-            height: 120,
-            width: 355,
+            height: 140,
+            width: 385,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,
@@ -353,36 +360,56 @@ class _CarRentPageState extends State<CarRentPage> {
                                 children: [
                                   Container(
                                     height: 100,
-                                    width: 100,
+                                    width: 80,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(15),
+                                      color: Color(0xff162542),
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(14),
+                                        topLeft: Radius.circular(14),
                                       ),
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "Assets/car_price_banner.png",
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 8),
+                                          child: Icon(
+                                            Icons.access_time_sharp,
+                                            color: Colors.white,
+                                          ),
+                                        ),SizedBox(height: 5,),
+                                        Text(
+                                          "₹ 60,000",
+                                          style: TextStyle(color: Colors.white),
                                         ),
-                                        fit: BoxFit.cover,
-                                      ),
+                                      ],
                                     ),
                                   ),
                                   Column(
                                     children: [
-                                      Text(
-                                        "Daily Rent",
-                                        style: TextStyle(
-                                          color: Color(0xff162542),
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13,
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 14,top: 7),
+                                        child: Text(
+                                          "Daily Rent",
+                                          style: TextStyle(
+                                            color: Color(0xff162542),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13,
+                                          ),
                                         ),
                                       ),
-                                      Text(
-                                        "Best for Bussines",
-                                        style: TextStyle(fontSize: 10),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 11),
+                                        child: Text(
+                                          "Best for Bussines",
+                                          style: TextStyle(fontSize: 10),
+                                        ),
                                       ),
-                                      Text(
-                                        "Appoiments",
-                                        style: TextStyle(fontSize: 10),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:11),
+                                        child: Text(
+                                          "Appoiments",
+                                          style: TextStyle(fontSize: 10),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -406,7 +433,7 @@ class _CarRentPageState extends State<CarRentPage> {
                                 children: [
                                   Container(
                                     height: 100,
-                                    width: 100,
+                                    width: 80,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(15),
@@ -422,16 +449,19 @@ class _CarRentPageState extends State<CarRentPage> {
                                   ),
                                   Column(
                                     children: [
-                                      Text(
-                                        "Week Rent",
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13,
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          "Week Rent",
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13,
+                                          ),
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.only(left: 10),
                                         child: Text(
                                           "Best for travele...",
                                           style: TextStyle(
@@ -454,59 +484,76 @@ class _CarRentPageState extends State<CarRentPage> {
               ),
             ),
           ),
-          SizedBox(height: 0),
-          Container(
-            width: 355,
-            height: 65,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(0),
-              border: Border(top: BorderSide(color: Colors.grey.shade200)),
-              color: Colors.white,
-            ),
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Text(
-                    "₹ 60,000 ",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff162542),
+          SizedBox(height: 10),
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Container(
+              width: 400,
+              height: 75,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border(top: BorderSide(color: Colors.grey.shade200)),
+                color: Colors.white,
+              ),
+              child: Row(mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 0),
+                    child: Text(
+                      "₹ 60,000 ",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff162542),
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  " / day                        ",
-                  style: TextStyle(color: Colors.grey, fontSize: 15),
-                ),
-                Row(mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    InkWell(onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => CarDateTimePicker(),));
-                    },
-                      child: Container(
-                        height: 50,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Color(0xff162542),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Rent Now",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        " / day                        ",
+                        style: TextStyle(color: Colors.grey, fontSize: 15),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CarDateTimePicker(),
                             ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 115,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xff162542),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Rent Now",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],

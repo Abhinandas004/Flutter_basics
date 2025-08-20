@@ -34,17 +34,14 @@ class _WebloginuiState extends State<Webloginui> {
           ),
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-            child: Container(
-              color: Colors.black.withOpacity(0),
-            ),
+            child: Container(color: Colors.black.withOpacity(0)),
           ),
           Form(
             key: formkey,
             child: Column(
               children: [
-
                 Padding(
-                  padding:EdgeInsets.only(left: 50, top: 20),
+                  padding: EdgeInsets.only(left: 50, top: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -62,7 +59,7 @@ class _WebloginuiState extends State<Webloginui> {
                       ),
                       Spacer(),
                       Padding(
-                        padding:EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: InkWell(
                           onTap: () {},
                           child: Text(
@@ -130,9 +127,9 @@ class _WebloginuiState extends State<Webloginui> {
                             borderRadius: BorderRadius.circular(1),
                             border: Border.all(color: Colors.white),
                           ),
-                          child:Center(
+                          child: Center(
                             child: InkWell(
-                              onTap: (){},
+                              onTap: () {},
                               child: Text(
                                 "Login",
                                 style: TextStyle(
@@ -172,7 +169,10 @@ class _WebloginuiState extends State<Webloginui> {
                                 ),
                                 color: Colors.white,
                               ),
-                              child: const Icon(Icons.close, color: Colors.blueGrey),
+                              child: const Icon(
+                                Icons.close,
+                                color: Colors.blueGrey,
+                              ),
                             ),
                           ],
                         ),
@@ -195,7 +195,10 @@ class _WebloginuiState extends State<Webloginui> {
                               return null;
                             },
                             decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.email, color: Colors.grey.shade50),
+                              suffixIcon: Icon(
+                                Icons.email,
+                                color: Colors.grey.shade50,
+                              ),
                               hintText: "Email",
                               hintStyle: const TextStyle(color: Colors.white),
                             ),
@@ -212,7 +215,10 @@ class _WebloginuiState extends State<Webloginui> {
                               return null;
                             },
                             decoration: InputDecoration(
-                              suffixIcon: Icon(Icons.lock, color: Colors.grey.shade50),
+                              suffixIcon: Icon(
+                                Icons.lock,
+                                color: Colors.grey.shade50,
+                              ),
                               hintText: "Password",
                               hintStyle: const TextStyle(color: Colors.white),
                             ),
@@ -223,8 +229,12 @@ class _WebloginuiState extends State<Webloginui> {
                           children: [
                             Expanded(
                               child: CheckboxListTile(
-                                controlAffinity: ListTileControlAffinity.leading,
-                                title: Text("Remember me", style: TextStyle(color: Colors.grey.shade50)),
+                                controlAffinity:
+                                    ListTileControlAffinity.leading,
+                                title: Text(
+                                  "Remember me",
+                                  style: TextStyle(color: Colors.grey.shade50),
+                                ),
                                 value: isChecked,
                                 onChanged: (bool? value) {
                                   setState(() {
@@ -283,7 +293,8 @@ class _WebloginuiState extends State<Webloginui> {
                               "Register",
                               style: TextStyle(
                                 color: Color(0xffCFECFC),
-                                fontWeight: FontWeight.bold,fontSize: 14
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
                               ),
                             ),
                           ],

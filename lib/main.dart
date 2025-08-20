@@ -3,12 +3,16 @@ import 'package:basics/sign_up_page.dart';
 import 'package:basics/Widgets/study_buttons.dart';
 import 'package:flutter/material.dart';
 
-import 'Car_Updated_Inbox.dart';
+import 'Car_renal_app_ui/Car_Rental_pin_page.dart';
+import 'Car_renal_app_ui/Car_Updated_Inbox.dart';
+import 'Car_renal_app_ui/Car_Payments_methods_page.dart';
 import 'Car_renal_app_ui/Car_Rental_App_Ui.dart';
 import 'Car_renal_app_ui/Car_Rental_App_Wishlist.dart';
 import 'Car_renal_app_ui/Car_Rental_Inbox.dart';
 import 'Car_renal_app_ui/Car_Rental_Profile.dart';
+import 'Car_renal_app_ui/Car_Summary_page.dart';
 import 'Car_renal_app_ui/Car_date_time_picker.dart';
+import 'Car_renal_app_ui/Car_login1_page.dart';
 import 'Car_renal_app_ui/Car_rent_page.dart';
 import 'Car_renal_app_ui/Navigation_Car_Rental_app.dart';
 import 'Flutter_row_column_work2.dart';
@@ -19,13 +23,20 @@ import 'Login_img_form.dart';
 import 'Login_page_wok.dart' show Pagelogin;
 import 'Study_bottom_navigation/study_Bottom_navigation.dart';
 import 'Web_login_ui/Web_ui.dart';
+import 'Widgets/Dropdown_male_or_female.dart';
 import 'Widgets/Study_Listview_builder.dart';
 import 'Widgets/Study_Radio.dart';
+import 'Widgets/Study_drawer.dart';
+import 'Widgets/Study_dropdown.dart';
+import 'Widgets/Study_pinput.dart';
 import 'Widgets/Study_time_date_picker.dart';
+import 'Widgets/Vegitable_dropdown.dart';
 import 'Widgets/study_textform.dart';
 import 'chess_board.dart';
 import 'col_row_work.dart';
 import 'container_work.dart';
+
+
 import 'image/Add images.dart';
 import 'image/Sign_up_form.dart';
 import 'new.dart';
@@ -61,7 +72,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: CarDateTimePicker ()
+      home: MyNavigationcar()
     );
   }
 }

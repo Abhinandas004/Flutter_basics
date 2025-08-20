@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'Car_Rental_Profile.dart';
 import 'Car_rent_page.dart';
 
 class CarRentalAppUi extends StatefulWidget {
@@ -34,16 +35,20 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                 SizedBox(width: 25),
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      image: DecorationImage(
-                        image: AssetImage(
-                          "Assets/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg",
+                  child: InkWell(onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CarRentalProfile(),));
+                  },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        image: DecorationImage(
+                          image: AssetImage(
+                            "Assets/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg",
+                          ),
+                          fit: BoxFit.cover,
                         ),
-                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -105,7 +110,7 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Container(
-              height: 140,
+              height: 160,
               width: 355,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -125,7 +130,7 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                 child: Text(
                   "Brands",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: Color(0xff162542),
                   ),
@@ -134,15 +139,19 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
               Spacer(),
               Padding(
                 padding: const EdgeInsets.only(right: 2, left: 20),
-                child: Text("See all", style: TextStyle(fontSize: 16)),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("See all", style: TextStyle(fontSize: 18)),
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 10),
-                child: Icon(Icons.navigate_next),
+                child: Icon(Icons.navigate_next,size: 26,),
               ),
             ],
           ),
-          Row(
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 10),
@@ -158,7 +167,7 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [Text("Mercedes")],
+                    children: [Text("Benz",style: TextStyle(fontSize: 15),)],
                   ),
                 ),
               ),
@@ -177,7 +186,7 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [Text("BMW")],
+                    children: [Text("BMW",style: TextStyle(fontSize: 15),)],
                   ),
                 ),
               ),
@@ -196,7 +205,7 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [Text("Porshe")],
+                    children: [Text("Porshe",style: TextStyle(fontSize: 15),)],
                   ),
                 ),
               ),
@@ -215,13 +224,13 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [Text("Renault")],
+                    children: [Text("Renault",style: TextStyle(fontSize: 15),)],
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           Row(
             children: [
               Padding(
@@ -231,12 +240,12 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Color(0xff162542),
-                    fontSize: 18,
+                    fontSize: 25,
                   ),
                 ),
               ),
             ],
-          ),
+          ),SizedBox(height: 10,),
           InkWell(onTap: () {
             Navigator.push(
               context,
@@ -244,8 +253,8 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
             );
           },
             child: Container(
-              width: 355,
-              height: 160,
+              width: 400,
+              height: 190,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(image: AssetImage("Assets/benz_pic.webp")),
@@ -259,7 +268,7 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                 padding: const EdgeInsets.only(left: 10),
                 child: Text(
                   "Mercedes S-class",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                 ),
               ),
               Spacer(),
@@ -268,7 +277,7 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                 padding: const EdgeInsets.only(right: 10),
                 child: Text(
                   "4.8",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
               ),
             ],

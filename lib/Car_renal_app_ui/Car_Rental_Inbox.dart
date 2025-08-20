@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'Car_Rental_App_Ui.dart';
+import 'Navigation_Car_Rental_app.dart';
+
 class CarRentalInbox extends StatefulWidget {
   const CarRentalInbox({super.key});
 
@@ -17,24 +20,33 @@ class _CarRentalInboxState extends State<CarRentalInbox> {
             padding: const EdgeInsets.only(left: 25, top: 25),
             child: Row(
               children: [
-                Container(
-                  height: 25,
-                  width: 25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Center(
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          size: 18,
-                          color: Color(0xff162542),
+                InkWell(onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyNavigationcar(),
+                    ),
+                  );
+                },
+                  child: Container(
+                    height: 25,
+                    width: 25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            size: 18,
+                            color: Color(0xff162542),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(width: 15),

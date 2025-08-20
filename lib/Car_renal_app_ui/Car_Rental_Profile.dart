@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Car_Rental_App_Ui.dart';
+import 'Navigation_Car_Rental_app.dart';
+
 class CarRentalProfile extends StatefulWidget {
   const CarRentalProfile({super.key});
 
@@ -11,20 +14,29 @@ class CarRentalProfile extends StatefulWidget {
 class _CarRentalProfileState extends State<CarRentalProfile> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Color(0xffFAFAFA),
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 25, top: 20),
+            padding: const EdgeInsets.only(left: 25, top: 0),
             child: Row(
               children: [
-                Container(
-                  height: 25,
-                  width: 25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
+                InkWell(onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyNavigationcar(),
+                    ),
+                  );
+                },
+                  child: Container(
+                    height: 25,
+                    width: 25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Icon(Icons.arrow_back_ios, size: 18),
                   ),
-                  child: Icon(Icons.arrow_back_ios, size: 18),
                 ),
                 SizedBox(width: 15),
                 Text(
@@ -45,7 +57,7 @@ class _CarRentalProfileState extends State<CarRentalProfile> {
               children: [
                 CircleAvatar(
                   radius: 40,
-                  backgroundImage: AssetImage("Assets/Profile_img.jpg"),
+                  backgroundImage: AssetImage("Assets/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg"),
                 ),
               ],
             ),
@@ -185,7 +197,7 @@ class _CarRentalProfileState extends State<CarRentalProfile> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: CircleAvatar(backgroundImage: AssetImage("Assets/New_img_location.jpeg"),),
+                      child: CircleAvatar(backgroundImage: AssetImage("Assets/New_img_location.jpeg"),radius: 23,),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
@@ -194,7 +206,7 @@ class _CarRentalProfileState extends State<CarRentalProfile> {
                     Row(mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 140),
+                          padding: const EdgeInsets.only(left: 130),
                           child: Icon(Icons.arrow_forward_ios),
                         ),
                       ],
@@ -212,7 +224,7 @@ class _CarRentalProfileState extends State<CarRentalProfile> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
-                    child: CircleAvatar(backgroundImage: AssetImage("Assets/Booking_updated_icon.png"),),
+                    child: CircleAvatar(backgroundImage: AssetImage("Assets/Booking_updated_icon.png"),radius:25,),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
@@ -221,7 +233,7 @@ class _CarRentalProfileState extends State<CarRentalProfile> {
                   Row(mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 140),
+                        padding: const EdgeInsets.only(left: 130),
                         child: Icon(Icons.arrow_forward_ios),
                       ),
                     ],
@@ -239,7 +251,7 @@ class _CarRentalProfileState extends State<CarRentalProfile> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
-                    child: CircleAvatar(backgroundImage: AssetImage("Assets/Setting_updated_icon.png"),),
+                    child: CircleAvatar(backgroundImage: AssetImage("Assets/Setting_updated_icon.png"),radius: 25,),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
@@ -248,7 +260,7 @@ class _CarRentalProfileState extends State<CarRentalProfile> {
                   Row(mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 140),
+                        padding: const EdgeInsets.only(left: 130),
                         child: Icon(Icons.arrow_forward_ios),
                       ),
                     ],
@@ -265,12 +277,12 @@ class _CarRentalProfileState extends State<CarRentalProfile> {
                 ),child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 15),
                     child: CircleAvatar(backgroundImage: AssetImage("Assets/ChatGPT Image Aug 7, 2025, 09_32_03 PM.png"),),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
-                    child: Text("Policies               ",style:TextStyle(fontSize: 17,color: Color(0xff162542)) ,),
+                    child: Text(" Policies            ",style:TextStyle(fontSize: 17,color: Color(0xff162542)) ,),
                   ),
                   Row(mainAxisAlignment: MainAxisAlignment.end,
                     children: [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Car_Updated_Inbox.dart';
+import 'Car_Updated_Inbox.dart';
 import 'Car_Rental_App_Ui.dart';
 import 'Car_Rental_App_Wishlist.dart';
 import 'Car_Rental_Inbox.dart';
