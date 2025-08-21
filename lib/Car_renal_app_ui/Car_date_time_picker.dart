@@ -16,6 +16,9 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
   DateTime selectedDate = DateTime.now();
   String? formattedDate;
 
+  TimeOfDay selectedTime = TimeOfDay.now();
+  String? formattedTime;
+
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -24,48 +27,34 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
       lastDate: DateTime(2100),
     );
 
-    if (picked != null && picked != selectedDate) {
+    if (picked != null) {
       setState(() {
         selectedDate = picked;
-      });
-
-      // Format date as dd MM yy
-      setState(() {
         formattedDate = DateFormat('dd MM yy').format(selectedDate);
       });
-
-      print("Selected Date: $formattedDate");
     }
   }
 
-  // time picker
-  TimeOfDay selectedTime = TimeOfDay.now();
-  String? formattedTime;
   Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
       initialTime: selectedTime,
     );
 
-    if (picked != null && picked != selectedTime) {
-      selectedTime = picked;
-
-      // Convert TimeOfDay to DateTime
+    if (picked != null) {
       final now = DateTime.now();
       final dateTime = DateTime(
         now.year,
         now.month,
         now.day,
-        selectedTime.hour,
-        selectedTime.minute,
+        picked.hour,
+        picked.minute,
       );
 
-      // Format using intl
       setState(() {
+        selectedTime = picked;
         formattedTime = DateFormat('HH:mm').format(dateTime);
       });
-
-      print("Selected Time: $formattedTime");
     }
   }
 
@@ -84,7 +73,6 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
           ),
           TextButton(
             onPressed: () {
-              // Exit code here
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -99,28 +87,47 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
     );
   }
 
+  Widget buildInputBox({required Widget child}) {
+    return Container(
+      height: 50,
+      padding: EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: Colors.white,
+        border: Border.all(color: Color(0xff162542)),
+      ),
+      child: child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffFAFAFA),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.only(left: 25),
+              padding: EdgeInsets.only(left: 25, top: 10, bottom: 10),
               child: Row(
                 children: [
                   InkWell(
                     onTap: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => CarRentPage(),));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CarRentPage()),
+                      );
                     },
                     child: Container(
-                      height: 25,
-                      width: 25,
+                      height: 30,
+                      width: 30,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+
                       ),
-                      child: Icon(Icons.arrow_back_ios, size: 18),
+                      child: Icon(Icons.arrow_back_ios, size: 16),
                     ),
                   ),
                   SizedBox(width: 15),
@@ -136,298 +143,202 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
               ),
             ),
           ),
-          SizedBox(height: 0),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                "Starting Date",
-                style: TextStyle(color: Color(0xff162542)),
-              ),
-              Text(
-                "Ending Date",
-                style: TextStyle(color: Color(0xff162542)),
-              ),
-            ],
-          ),
-          SizedBox(height: 10),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Container(
-                  height: 50,
-                  width: 180,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white,
-                    border: Border.all(color: Color(0xff162542)),
-                  ),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          _selectDate(context);
-                        },
-                        icon: Icon(Icons.calendar_month_outlined),
-                      ),
-                      Text(
-                        formattedDate.toString(),
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(width: 10),
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Container(
-                  height: 50,
-                  width: 180,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white,
-                    border: Border.all(color: Color(0xff162542)),
-                  ),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          _selectDate(context);
-                        },
-                        icon: Icon(Icons.calendar_month_outlined),
-                      ),
-                      Text(
-                        formattedDate.toString(),
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),SizedBox(height: 10,),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                "Starting Time",
-                style: TextStyle(color: Color(0xff162542)),
-              ),
-              Text(
-                "End Time",
-                style: TextStyle(color: Color(0xff162542)),
-              ),
-            ],
-          ),
-          SizedBox(height: 10),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Container(
-                  height: 50,
-                  width: 180,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white,
-                    border: Border.all(color: Color(0xff162542)),
-                  ),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          formattedTime.toString(),
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 90),
-                        child: InkWell(
-                          onTap: () {
-                            _selectTime(context);
-                          },
-                          child: Icon(
-                            Icons.keyboard_arrow_down,
-                            color: Color(0xff162542),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(width: 15),
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Container(
-                  height: 50,
-                  width: 180,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white,
-                    border: Border.all(color: Color(0xff162542)),
-                  ),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          formattedTime.toString(),
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 90),
-                        child: InkWell(
-                          onTap: () {
-                            _selectTime(context);
-                          },
-                          child: Icon(
-                            Icons.keyboard_arrow_down,
-                            color: Color(0xff162542),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 20),
+
           Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Delivery Location",
-                  style: TextStyle(color: Color(0xff162542)),
-                ),
+                Text("Starting Date", style: TextStyle(color: Color(0xff162542))),
+                Text("Ending Date", style: TextStyle(color: Color(0xff162542))),
               ],
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
+
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                Container(
-                  height: 40,
-                  width: 390,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white,
-                    border: Border.all(color: Color(0xff162542)),
-                  ),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Icon(
-                          Icons.location_on_rounded,
-                          color: Color(0xff162542),
+                Expanded(
+                  child: buildInputBox(
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () => _selectDate(context),
+                          icon: Icon(Icons.calendar_month_outlined),
                         ),
-                      ),
-                      Text(
-                        "Bangalore International Airport, Kempegowda I...",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ],
+                        Text(
+                          formattedDate ?? "Pick date",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(width: 12),
+                Expanded(
+                  child: buildInputBox(
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () => _selectDate(context),
+                          icon: Icon(Icons.calendar_month_outlined),
+                        ),
+                        Text(
+                          formattedDate ?? "Pick date",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
+
           SizedBox(height: 20),
 
           Padding(
-            padding: const EdgeInsets.only(left: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Starting Time", style: TextStyle(color: Color(0xff162542))),
+                Text("End Time", style: TextStyle(color: Color(0xff162542))),
+              ],
+            ),
+          ),
+          SizedBox(height: 10),
+
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                Text(
-                  "Return Location",
-                  style: TextStyle(color: Color(0xff162542)),
+                Expanded(
+                  child: buildInputBox(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          formattedTime ?? "Pick time",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        InkWell(
+                          onTap: () => _selectTime(context),
+                          child: Icon(Icons.keyboard_arrow_down, color: Color(0xff162542)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(width: 12),
+                Expanded(
+                  child: buildInputBox(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          formattedTime ?? "Pick time",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        InkWell(
+                          onTap: () => _selectTime(context),
+                          child: Icon(Icons.keyboard_arrow_down, color: Color(0xff162542)),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
+
           SizedBox(height: 20),
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Container(
-              height: 40,
-              width: 390,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.white,
-                border: Border.all(color: Color(0xff162542)),
-              ),
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text("Delivery Location", style: TextStyle(color: Color(0xff162542))),
+          ),
+          SizedBox(height: 10),
+
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: buildInputBox(
               child: Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Icon(
-                      Icons.location_on_rounded,
-                      color: Color(0xff162542),
+                  Icon(Icons.location_on_rounded, color: Color(0xff162542)),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      "Bangalore International Airport, Kempegowda I...",
+                      style: TextStyle(color: Colors.grey),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  Text(
-                    "MG Road Metro Station, MG Road, Bengaluru, K...",
-                    style: TextStyle(color: Colors.grey),
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(height: 10),
-          Spacer(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                height: 75,
-                width: 390,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border(top: BorderSide(color: Colors.grey.shade200)),
-                ),
 
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 7),
-                      child: Center(
-                        child: InkWell(
-                          onTap: () {
-                            showMyAlert(context);
-                          },
-                          child: Container(
-                            height: 50,
-                            width: 340,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Color(0xff162542)),
-                              color: Color(0xff162542),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Continue",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+          SizedBox(height: 20),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Text("Return Location", style: TextStyle(color: Color(0xff162542))),
+          ),
+          SizedBox(height: 10),
+
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: buildInputBox(
+              child: Row(
+                children: [
+                  Icon(Icons.location_on_rounded, color: Color(0xff162542)),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      "MG Road Metro Station, MG Road, Bengaluru, K...",
+                      style: TextStyle(color: Colors.grey),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          Spacer(),
+
+          Container(
+            height: 75,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border(top: BorderSide(color: Colors.grey.shade200)),
+            ),
+            child: Center(
+              child: InkWell(
+                onTap: () => showMyAlert(context),
+                child: Container(
+                  height: 55,
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xff162542)),
+                    color: Color(0xff162542),
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Continue",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ],
+            ),
           ),
         ],
       ),

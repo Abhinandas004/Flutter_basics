@@ -384,7 +384,7 @@ class _CarSummaryPageState extends State<CarSummaryPage> {
                             showMyAlert(context);
                           },
                           child: Container(
-                            height: 50,
+                            height: 55,
                             width: 340,
                             decoration: BoxDecoration(
                               border: Border.all(color: Color(0xff162542)),

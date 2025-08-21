@@ -56,6 +56,7 @@ class _CarPaymentsMethodsPageState extends State<CarPaymentsMethodsPage> {
                           color: Color(0xff162542),
                         ),
                       ),
+                      SizedBox(width: 130,),
                       Icon(
                         Icons.add,
                         color: Color(0xff162542),
@@ -324,7 +325,7 @@ class _CarPaymentsMethodsPageState extends State<CarPaymentsMethodsPage> {
                             );
                           },
                           child: Container(
-                            height: 50,
+                            height: 55,
                             width: 340,
                             decoration: BoxDecoration(
                               border: Border.all(color: Color(0xff162542)),

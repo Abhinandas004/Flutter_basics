@@ -65,8 +65,8 @@ class _CarRentPageState extends State<CarRentPage> {
           Column(
             children: [
               Container(
-                width: 395,
-                height: 210,
+                width: 450,
+                height: 230,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
@@ -420,7 +420,7 @@ class _CarRentPageState extends State<CarRentPage> {
                         ),
                         SizedBox(width: 10),
                         Container(
-                          width: 200,
+                          width: 210,
                           height: 70,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
@@ -529,8 +529,8 @@ class _CarRentPageState extends State<CarRentPage> {
                           child: Row(mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Container(
-                                height: 50,
-                                width: 115,
+                                height: 55,
+                                width: 135,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   color: Color(0xff162542),

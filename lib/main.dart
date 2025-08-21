@@ -11,10 +11,12 @@ import 'Car_renal_app_ui/Car_Rental_App_Wishlist.dart';
 import 'Car_renal_app_ui/Car_Rental_Inbox.dart';
 import 'Car_renal_app_ui/Car_Rental_Profile.dart';
 import 'Car_renal_app_ui/Car_Summary_page.dart';
+import 'Car_renal_app_ui/Car_app_3rd_screen.dart';
 import 'Car_renal_app_ui/Car_date_time_picker.dart';
 import 'Car_renal_app_ui/Car_login1_page.dart';
 import 'Car_renal_app_ui/Car_rent_page.dart';
 import 'Car_renal_app_ui/Navigation_Car_Rental_app.dart';
+import 'Car_renal_app_ui/car_app_1st_screen.dart';
 import 'Flutter_row_column_work2.dart';
 import 'Flutter_rows_column_work.dart';
 import 'List_Directory/Product_list.dart';
@@ -26,8 +28,10 @@ import 'Web_login_ui/Web_ui.dart';
 import 'Widgets/Dropdown_male_or_female.dart';
 import 'Widgets/Study_Listview_builder.dart';
 import 'Widgets/Study_Radio.dart';
+import 'Widgets/Study_Text_phone_Field.dart';
 import 'Widgets/Study_drawer.dart';
 import 'Widgets/Study_dropdown.dart';
+import 'Widgets/Study_img_picker.dart';
 import 'Widgets/Study_pinput.dart';
 import 'Widgets/Study_time_date_picker.dart';
 import 'Widgets/Vegitable_dropdown.dart';
@@ -72,7 +76,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: MyNavigationcar()
+      home: CarApp3rdScreen()
     );
   }
 }

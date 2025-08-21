@@ -45,6 +45,13 @@ class MyHomePage extends StatelessWidget {
                 // Logout logic
               },
             ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text("details"),
+              onTap: () {
+                // Logout logic
+              },
+            ),
           ],
         ),
       ),

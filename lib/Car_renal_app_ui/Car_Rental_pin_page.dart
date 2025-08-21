@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 
+import 'Car_Rental_App_Ui.dart';
 import 'Car_Summary_page.dart';
+import 'Navigation_Car_Rental_app.dart';
 
 class CarRentalPinPage extends StatefulWidget {
   const CarRentalPinPage({super.key});
@@ -16,37 +18,83 @@ class _CarRentalPinPageState extends State<CarRentalPinPage> {
   void showMyAlert(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        content: Column(mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.check_circle_sharp, size: 80),
-            SizedBox(height: 10),
-            Text(
-              "Booking Successful",
-              style: TextStyle(fontSize: 20, color: Color(0xff162542)),
-            ),SizedBox(height: 20,),
-            Text("Your Booking has confirmed."),
-            Text(" have a wonderful journey"),
-            Container()
-          ],
-        ),
+      barrierDismissible: false, // prevents closing by tapping outside
+      builder: (context) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.check_circle, size: 80, color: Color(0xff162542)),
+              SizedBox(height: 16),
 
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text("No"),
+              Text(
+                "Booking Successful!",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff162542),
+                ),
+                textAlign: TextAlign.center,
+              ),
+               SizedBox(height: 10),
+
+               Text(
+                "Your booking has been confirmed.\nHave a wonderful journey",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14, color: Colors.black54),
+              ),
+               SizedBox(height: 24),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:  Color(0xff162542),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding:  EdgeInsets.symmetric(vertical: 14),
+                      ),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyNavigationcar(),
+                        ),
+                      ),
+                      child:  Text(
+                        "Done",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                   SizedBox(width: 12),
+                  Expanded(
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        side:  BorderSide(color: Color(0xff162542)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        padding:  EdgeInsets.symmetric(vertical: 14),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+
+                      child:Text(
+                        "Bookings",
+                        style: TextStyle(color: Color(0xff162542)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () {
-              // Exit code here
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CarRentalPinPage()),
-              );
-            },
-            child: Text("Pay Now"),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -133,7 +181,7 @@ class _CarRentalPinPageState extends State<CarRentalPinPage> {
                                 showMyAlert(context);
                               },
                               child: Container(
-                                height: 50,
+                                height: 55,
                                 width: 340,
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Color(0xff162542)),
