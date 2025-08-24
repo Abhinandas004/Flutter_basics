@@ -11,6 +11,7 @@ import 'Car_renal_app_ui/Car_Rental_App_Wishlist.dart';
 import 'Car_renal_app_ui/Car_Rental_Inbox.dart';
 import 'Car_renal_app_ui/Car_Rental_Profile.dart';
 import 'Car_renal_app_ui/Car_Summary_page.dart';
+import 'Car_renal_app_ui/Car_app_2nd_screen.dart';
 import 'Car_renal_app_ui/Car_app_3rd_screen.dart';
 import 'Car_renal_app_ui/Car_date_time_picker.dart';
 import 'Car_renal_app_ui/Car_login1_page.dart';
@@ -76,7 +77,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: CarApp3rdScreen()
+      home: CarApp1stScreen()
     );
   }
 }
