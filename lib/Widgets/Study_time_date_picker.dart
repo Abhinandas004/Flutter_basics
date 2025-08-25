@@ -96,65 +96,67 @@ class _StudyTimeDatePickerState extends State<StudyTimeDatePicker> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10, top: 20),
-            child: Row(
-              children: [
-                Card(
-                  child: TextButton(
-                    onPressed: () {
-                      _selectDate(context);
-                    },
-                    child: Text("Date"),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10, top: 20),
+              child: Row(
+                children: [
+                  Card(
+                    child: TextButton(
+                      onPressed: () {
+                        _selectDate(context);
+                      },
+                      child: Text("Date"),
+                    ),
                   ),
-                ),
-                Text(
-                  formattedDate.toString(),
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, top: 20),
-            child: Row(
-              children: [
-                Card(
-                  child: TextButton(
-                    onPressed: () {
-                      _selectTime(context);
-                    },
-                    child: Text("Time"),
+                  Text(
+                    formattedDate.toString(),
+                    style: TextStyle(color: Colors.grey),
                   ),
-                ),
-                Text(
-                   formattedTime.toString(),
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 100),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                showMyAlert(context);
-              },
-              child: Text("Submit"),
-            ),
-          ),SizedBox(height: 39,),
-          ElevatedButton(onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(backgroundColor: Colors.black38,
-                content: Text("Thank you for submitting!"),
-                duration: Duration(seconds: 2),
+                ],
               ),
-            );
-          }, child: Text("Continue"))
-        ],
-
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, top: 20),
+              child: Row(
+                children: [
+                  Card(
+                    child: TextButton(
+                      onPressed: () {
+                        _selectTime(context);
+                      },
+                      child: Text("Time"),
+                    ),
+                  ),
+                  Text(
+                     formattedTime.toString(),
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 100),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  showMyAlert(context);
+                },
+                child: Text("Submit"),
+              ),
+            ),SizedBox(height: 39,),
+            ElevatedButton(onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(backgroundColor: Colors.black38,
+                  content: Text("Thank you for submitting!"),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            }, child: Text("Continue"))
+          ],
+        
+        ),
       ),
     );
   }

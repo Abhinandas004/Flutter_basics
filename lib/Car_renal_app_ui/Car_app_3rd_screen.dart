@@ -12,10 +12,13 @@ class CarApp3rdScreen extends StatefulWidget {
 }
 
 class _CarApp3rdScreenState extends State<CarApp3rdScreen> {
+  // 🔹 Store multiple selected brands
+  Set<String> selectedCars = {};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffFAFAFA),
+      backgroundColor: const Color(0xffFAFAFA),
       body: SafeArea(
         child: Column(
           children: [
@@ -23,7 +26,7 @@ class _CarApp3rdScreenState extends State<CarApp3rdScreen> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 10),
+                  padding: EdgeInsets.only(right: 10),
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -45,7 +48,7 @@ class _CarApp3rdScreenState extends State<CarApp3rdScreen> {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.only(left: 10),
                   child: Text(
                     "Which brand of car \nyou prefer ?",
                     style: TextStyle(
@@ -58,234 +61,48 @@ class _CarApp3rdScreenState extends State<CarApp3rdScreen> {
               ],
             ),
             SizedBox(height: 20),
+
+            // BMW + Porsche
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Card(
-                  child: Container(
-                    height: 170,
-                    width: 190,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 120,
-                          width: 120,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage("Assets/BMW_Logo.png"),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            "BMW",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff162542),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Card(
-                  child: Container(
-                    height: 170,
-                    width: 190,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 120,
-                          width: 120,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage("Assets/Porshe_logo.jpg"),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            "Porshe",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff162542),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                buildCarCard("BMW", "Assets/BMW_Logo.png"),
+                buildCarCard("Porsche", "Assets/Porshe_logo.jpg"),
               ],
             ),
             SizedBox(height: 10),
+
+            // Benz + Renault
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Card(
-                  child: Container(
-                    height: 170,
-                    width: 190,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 120,
-                          width: 120,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage("Assets/Benz_logo.jpg"),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            "Benz",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff162542),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Card(
-                  child: Container(
-                    height: 170,
-                    width: 190,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 120,
-                          width: 120,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage("Assets/Renault_logo.jpeg"),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            "Renault",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff162542),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                buildCarCard("Benz", "Assets/Benz_logo.jpg"),
+                buildCarCard("Renault", "Assets/Renault_logo.jpeg"),
               ],
             ),
             SizedBox(height: 10),
+
+            // Lexus + Ferrari
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Card(
-                  child: Container(
-                    height: 170,
-                    width: 190,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 120,
-                          width: 120,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage("Assets/Lexus_logo.jpeg"),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            "Lexus",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff162542),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Card(
-                  child: Container(
-                    height: 170,
-                    width: 190,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 120,
-                          width: 120,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage("Assets/Ferrari_logo.jpeg"),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            "Ferrari",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff162542),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                buildCarCard("Lexus", "Assets/Lexus_logo.jpeg"),
+                buildCarCard("Ferrari", "Assets/Ferrari_logo.jpeg"),
               ],
             ),
+
             SizedBox(height: 60),
+
+            // Finish button
             InkWell(
-              onTap: () {
+              onTap: selectedCars.isEmpty
+                  ? null
+                  : () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyNavigationcar()),
+                  MaterialPageRoute(
+                    builder: (context) => CarLogin1Page(),
+                  ),
                 );
               },
               child: Container(
@@ -293,7 +110,9 @@ class _CarApp3rdScreenState extends State<CarApp3rdScreen> {
                 width: 360,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Color(0xff162542),
+                  color: selectedCars.isEmpty
+                      ? Colors.grey
+                      : const Color(0xff162542),
                 ),
                 child: Center(
                   child: Text(
@@ -308,6 +127,66 @@ class _CarApp3rdScreenState extends State<CarApp3rdScreen> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  // 🔹 Custom widget for each card
+  Widget buildCarCard(String brand, String imagePath) {
+    final isSelected = selectedCars.contains(brand);
+
+    return InkWell(
+      onTap: () {
+        setState(() {
+          if (isSelected) {
+            selectedCars.remove(brand); // unselect if already selected
+          } else {
+            selectedCars.add(brand); // select multiple
+          }
+        });
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: BorderSide(
+            color: isSelected ? Colors.blue : Colors.transparent,
+            width: 3,
+          ),
+        ),
+        child: Container(
+          height: 170,
+          width: 190,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white,
+          ),
+          child: Column(
+            children: [
+              Container(
+                height: 120,
+                width: 120,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(imagePath),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: Text(
+                  brand,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color:
+                    isSelected ? Colors.blue : const Color(0xff162542),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

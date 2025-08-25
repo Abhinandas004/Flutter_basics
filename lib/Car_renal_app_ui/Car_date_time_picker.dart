@@ -13,47 +13,61 @@ class CarDateTimePicker extends StatefulWidget {
 }
 
 class _CarDateTimePickerState extends State<CarDateTimePicker> {
-  DateTime selectedDate = DateTime.now();
-  String? formattedDate;
+  DateTime startDate = DateTime.now();
+  DateTime endDate = DateTime.now();
+  TimeOfDay startTime = TimeOfDay.now();
+  TimeOfDay endTime = TimeOfDay.now();
 
-  TimeOfDay selectedTime = TimeOfDay.now();
-  String? formattedTime;
+  String? formattedStartDate;
+  String? formattedEndDate;
+  String? formattedStartTime;
+  String? formattedEndTime;
 
-  Future<void> _selectDate(BuildContext context) async {
+  TextEditingController deliveryController = TextEditingController(
+      text: "Bangalore International Airport, Kempegowda I...");
+  TextEditingController returnController =
+  TextEditingController(text: "MG Road Metro Station, Bengaluru...");
+
+  Future<void> _selectDate(BuildContext context, bool isStart) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate,
+      initialDate: isStart ? startDate : endDate,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     );
 
     if (picked != null) {
       setState(() {
-        selectedDate = picked;
-        formattedDate = DateFormat('dd MM yy').format(selectedDate);
+        if (isStart) {
+          startDate = picked;
+          formattedStartDate = DateFormat('dd MMM yy').format(startDate);
+        } else {
+          endDate = picked;
+          formattedEndDate = DateFormat('dd MMM yy').format(endDate);
+        }
       });
     }
   }
 
-  Future<void> _selectTime(BuildContext context) async {
+  Future<void> _selectTime(BuildContext context, bool isStart) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
-      initialTime: selectedTime,
+      initialTime: isStart ? startTime : endTime,
     );
 
     if (picked != null) {
       final now = DateTime.now();
-      final dateTime = DateTime(
-        now.year,
-        now.month,
-        now.day,
-        picked.hour,
-        picked.minute,
-      );
+      final dateTime =
+      DateTime(now.year, now.month, now.day, picked.hour, picked.minute);
 
       setState(() {
-        selectedTime = picked;
-        formattedTime = DateFormat('HH:mm').format(dateTime);
+        if (isStart) {
+          startTime = picked;
+          formattedStartTime = DateFormat('HH:mm').format(dateTime);
+        } else {
+          endTime = picked;
+          formattedEndTime = DateFormat('HH:mm').format(dateTime);
+        }
       });
     }
   }
@@ -62,25 +76,29 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text("Confirm Booking Details"),
+        title: const Text("Confirm Booking Details"),
         content: Text(
-          "Do you want to proceed with the selected date, time, and locations?",
+          "Start: ${formattedStartDate ?? "N/A"} at ${formattedStartTime ?? "N/A"}\n"
+              "End: ${formattedEndDate ?? "N/A"} at ${formattedEndTime ?? "N/A"}\n\n"
+              "Delivery: ${deliveryController.text}\n"
+              "Return: ${returnController.text}\n\n"
+              "Do you want to proceed?",
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
           ),
           TextButton(
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CarPaymentsMethodsPage(),
+                  builder: (context) => const CarPaymentsMethodsPage(),
                 ),
               );
             },
-            child: Text("Confirm"),
+            child: const Text("Confirm"),
           ),
         ],
       ),
@@ -90,11 +108,11 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
   Widget buildInputBox({required Widget child}) {
     return Container(
       height: 50,
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: Colors.white,
-        border: Border.all(color: Color(0xff162542)),
+        border: Border.all(color: const Color(0xff162542)),
       ),
       child: child,
     );
@@ -103,35 +121,35 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffFAFAFA),
+      backgroundColor: const Color(0xffFAFAFA),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // top appbar
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.only(left: 25, top: 10, bottom: 10),
+              padding: const EdgeInsets.only(left: 25, top: 10, bottom: 10),
               child: Row(
                 children: [
                   InkWell(
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => CarRentPage()),
+                        MaterialPageRoute(builder: (context) => const CarRentPage()),
                       );
                     },
                     child: Container(
                       height: 30,
                       width: 30,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.white,
-
                       ),
-                      child: Icon(Icons.arrow_back_ios, size: 16),
+                      child: const Icon(Icons.arrow_back_ios, size: 16),
                     ),
                   ),
-                  SizedBox(width: 15),
-                  Text(
+                  const SizedBox(width: 15),
+                  const Text(
                     "Date & Time",
                     style: TextStyle(
                       fontSize: 20,
@@ -144,20 +162,21 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
             ),
           ),
 
+          // date pickers
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Text("Starting Date", style: TextStyle(color: Color(0xff162542))),
                 Text("Ending Date", style: TextStyle(color: Color(0xff162542))),
               ],
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
 
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
                 Expanded(
@@ -165,29 +184,29 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
                     child: Row(
                       children: [
                         IconButton(
-                          onPressed: () => _selectDate(context),
-                          icon: Icon(Icons.calendar_month_outlined),
+                          onPressed: () => _selectDate(context, true),
+                          icon: const Icon(Icons.calendar_month_outlined),
                         ),
                         Text(
-                          formattedDate ?? "Pick date",
-                          style: TextStyle(color: Colors.grey),
+                          formattedStartDate ?? "Pick date",
+                          style: const TextStyle(color: Colors.grey),
                         ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Expanded(
                   child: buildInputBox(
                     child: Row(
                       children: [
                         IconButton(
-                          onPressed: () => _selectDate(context),
-                          icon: Icon(Icons.calendar_month_outlined),
+                          onPressed: () => _selectDate(context, false),
+                          icon: const Icon(Icons.calendar_month_outlined),
                         ),
                         Text(
-                          formattedDate ?? "Pick date",
-                          style: TextStyle(color: Colors.grey),
+                          formattedEndDate ?? "Pick date",
+                          style: const TextStyle(color: Colors.grey),
                         ),
                       ],
                     ),
@@ -197,22 +216,23 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
             ),
           ),
 
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
+          // time pickers
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Text("Starting Time", style: TextStyle(color: Color(0xff162542))),
                 Text("End Time", style: TextStyle(color: Color(0xff162542))),
               ],
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
 
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
                 Expanded(
@@ -221,30 +241,32 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          formattedTime ?? "Pick time",
-                          style: TextStyle(color: Colors.grey),
+                          formattedStartTime ?? "Pick time",
+                          style: const TextStyle(color: Colors.grey),
                         ),
                         InkWell(
-                          onTap: () => _selectTime(context),
-                          child: Icon(Icons.keyboard_arrow_down, color: Color(0xff162542)),
+                          onTap: () => _selectTime(context, true),
+                          child: const Icon(Icons.keyboard_arrow_down,
+                              color: Color(0xff162542)),
                         ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Expanded(
                   child: buildInputBox(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          formattedTime ?? "Pick time",
-                          style: TextStyle(color: Colors.grey),
+                          formattedEndTime ?? "Pick time",
+                          style: const TextStyle(color: Colors.grey),
                         ),
                         InkWell(
-                          onTap: () => _selectTime(context),
-                          child: Icon(Icons.keyboard_arrow_down, color: Color(0xff162542)),
+                          onTap: () => _selectTime(context, false),
+                          child: const Icon(Icons.keyboard_arrow_down,
+                              color: Color(0xff162542)),
                         ),
                       ],
                     ),
@@ -254,25 +276,31 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
             ),
           ),
 
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
+
+          // Delivery Location
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text("Delivery Location", style: TextStyle(color: Color(0xff162542))),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child:
+            const Text("Delivery Location", style: TextStyle(color: Color(0xff162542))),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
 
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: buildInputBox(
               child: Row(
                 children: [
-                  Icon(Icons.location_on_rounded, color: Color(0xff162542)),
-                  SizedBox(width: 8),
+                  const Icon(Icons.location_on_rounded, color: Color(0xff162542)),
+                  const SizedBox(width: 8),
                   Expanded(
-                    child: Text(
-                      "Bangalore International Airport, Kempegowda I...",
-                      style: TextStyle(color: Colors.grey),
-                      overflow: TextOverflow.ellipsis,
+                    child: TextField(
+                      controller: deliveryController,
+                      style: const TextStyle(color: Colors.black),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        isDense: true,
+                      ),
                     ),
                   ),
                 ],
@@ -280,25 +308,31 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
             ),
           ),
 
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
+
+          // Return Location
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text("Return Location", style: TextStyle(color: Color(0xff162542))),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child:
+            const Text("Return Location", style: TextStyle(color: Color(0xff162542))),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
 
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: buildInputBox(
               child: Row(
                 children: [
-                  Icon(Icons.location_on_rounded, color: Color(0xff162542)),
-                  SizedBox(width: 8),
+                  const Icon(Icons.location_on_rounded, color: Color(0xff162542)),
+                  const SizedBox(width: 8),
                   Expanded(
-                    child: Text(
-                      "MG Road Metro Station, MG Road, Bengaluru, K...",
-                      style: TextStyle(color: Colors.grey),
-                      overflow: TextOverflow.ellipsis,
+                    child: TextField(
+                      controller: returnController,
+                      style: const TextStyle(color: Colors.black),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        isDense: true,
+                      ),
                     ),
                   ),
                 ],
@@ -306,8 +340,9 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
             ),
           ),
 
-          Spacer(),
+          const Spacer(),
 
+          // continue button
           Container(
             height: 75,
             width: double.infinity,
@@ -322,11 +357,11 @@ class _CarDateTimePickerState extends State<CarDateTimePicker> {
                   height: 55,
                   width: MediaQuery.of(context).size.width * 0.85,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xff162542)),
-                    color: Color(0xff162542),
+                    border: Border.all(color: const Color(0xff162542)),
+                    color: const Color(0xff162542),
                     borderRadius: BorderRadius.circular(18),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Continue",
                       style: TextStyle(

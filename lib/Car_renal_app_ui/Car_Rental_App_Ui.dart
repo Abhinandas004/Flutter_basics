@@ -35,9 +35,15 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                 SizedBox(width: 25),
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
-                  child: InkWell(onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => CarRentalProfile(),));
-                  },
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CarRentalProfile(),
+                        ),
+                      );
+                    },
                     child: Container(
                       height: 40,
                       width: 40,
@@ -138,23 +144,23 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
               ),
               Spacer(),
               Padding(
-                padding: const EdgeInsets.only(right: 2, left: 20),
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("See all", style: TextStyle(fontSize: 18)),
-                  ],
+                padding: EdgeInsets.only(right: 2, left: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [Text("See all", style: TextStyle(fontSize: 18))],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Icon(Icons.navigate_next,size: 26,),
+                padding: EdgeInsets.only(right: 10),
+                child: Icon(Icons.navigate_next, size: 26),
               ),
             ],
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 10),
+                padding: EdgeInsets.only(left: 10),
                 child: Container(
                   height: 90,
                   width: 78,
@@ -167,13 +173,13 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [Text("Benz",style: TextStyle(fontSize: 15),)],
+                    children: [Text("Benz", style: TextStyle(fontSize: 15))],
                   ),
                 ),
               ),
               SizedBox(width: 5),
               Padding(
-                padding: const EdgeInsets.only(left: 10),
+                padding: EdgeInsets.only(left: 10),
                 child: Container(
                   height: 99,
                   width: 78,
@@ -186,13 +192,13 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [Text("BMW",style: TextStyle(fontSize: 15),)],
+                    children: [Text("BMW", style: TextStyle(fontSize: 15))],
                   ),
                 ),
               ),
               SizedBox(width: 5),
               Padding(
-                padding: const EdgeInsets.only(left: 10),
+                padding: EdgeInsets.only(left: 10),
                 child: Container(
                   height: 99,
                   width: 78,
@@ -205,13 +211,13 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [Text("Porshe",style: TextStyle(fontSize: 15),)],
+                    children: [Text("Porshe", style: TextStyle(fontSize: 15))],
                   ),
                 ),
               ),
               SizedBox(width: 5),
               Padding(
-                padding: const EdgeInsets.only(left: 10),
+                padding: EdgeInsets.only(left: 10),
                 child: Container(
                   height: 99,
                   width: 78,
@@ -224,7 +230,7 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [Text("Renault",style: TextStyle(fontSize: 15),)],
+                    children: [Text("Renault", style: TextStyle(fontSize: 15))],
                   ),
                 ),
               ),
@@ -234,7 +240,7 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 10),
+                padding: EdgeInsets.only(left: 10),
                 child: Text(
                   "Popular Cars",
                   style: TextStyle(
@@ -245,19 +251,23 @@ class _CarRentalAppUiState extends State<CarRentalAppUi> {
                 ),
               ),
             ],
-          ),SizedBox(height: 10,),
-          InkWell(onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CarRentPage()),
-            );
-          },
+          ),
+          SizedBox(height: 10),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CarRentPage()),
+              );
+            },
             child: Container(
               width: 400,
               height: 190,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(image: AssetImage("Assets/benz_pic.webp")),
+                image: DecorationImage(
+                  image: AssetImage("Assets/benz_pic.webp"),
+                ),
               ),
             ),
           ),

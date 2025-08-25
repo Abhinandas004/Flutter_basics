@@ -12,26 +12,28 @@ class _Study_buttonsState extends State<Study_buttons> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          TextButton(onPressed: () {}, child: Text("Click")),
-          IconButton(onPressed: () {}, icon: Icon(Icons.ac_unit_outlined)),
-          ElevatedButton(onPressed: () {}, child: Text("Submit")),
-          Center(
-            child: InkWell(
-              onTap: () {},
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.pink,
+      body: SafeArea(
+        child: Column(
+          children: [
+            TextButton(onPressed: () {}, child: Text("Click")),
+            IconButton(onPressed: () {}, icon: Icon(Icons.ac_unit_outlined)),
+            ElevatedButton(onPressed: () {}, child: Text("Submit")),
+            Center(
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.pink,
+                  ),
+                  height: 50,
+                  width: 200,
+                  child: Center(child: Text("Login")),
                 ),
-                height: 50,
-                width: 200,
-                child: Center(child: Text("Login")),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
